@@ -3,8 +3,6 @@ FROM debian:bullseye
 RUN apt update -y
 RUN apt upgrade -y
 RUN apt install nginx -y
-RUN apt install vim -y
-RUN apt install curl -y
 
 RUN mkdir -p /etc/nginx/ssl
 RUN apt install openssl -y
@@ -17,4 +15,4 @@ COPY tools/cv.html /var/www/index.html
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
