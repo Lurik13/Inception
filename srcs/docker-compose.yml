@@ -6,3 +6,8 @@ services:
     ports:
       - "8080:443"
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
