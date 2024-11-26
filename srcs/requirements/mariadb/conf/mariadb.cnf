@@ -1,6 +1,5 @@
-[mysqld]
+[mariadbd]
 port = 3306
 bind_address = *
 datadir = /var/lib/mysql
 user = mysql
-socket = /run/mysql/mysqld.sock
