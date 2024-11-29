@@ -22,7 +22,7 @@ services:
     hostname: mariadb
     build: ./requirements/mariadb
     env_file: .env
-    restart: unless-stopped
+    restart: no
     volumes: 
       - mariadb_data:/var/lib/mysql
     networks: 
@@ -38,7 +38,7 @@ services:
     hostname: wordpress
     build: ./requirements/wordpress
     env_file: .env
-    restart: unless-stopped
+    restart: no
     depends_on:
       - mariadb
     volumes: 

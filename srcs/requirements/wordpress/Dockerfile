@@ -2,19 +2,27 @@ FROM debian:bullseye
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt-get -y install wget
-# RUN apt install wp -y
-RUN apt install curl -y
 
-# RUN wp plugin install user-switching --activate
-RUN mkdir -p /etc/wordpress/wp
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN apt-get install -y	wget\
+						php7.3\
+						php-fpm\
+						php-mysql\
+						php-cli\
+						mariadb-client
+						
+RUN mkdir -p /var/www/html
+COPY . .
+						
+RUN wget https://fr.wordpress.org/wordpress-6.7-fr_FR.tar.gz -P /var/www
+RUN cd /var/www && tar -xzf wordpress-6.7-fr_FR.tar.gz && rm wordpress-6.7-fr_FR.tar.gz
+RUN chown -R www-data:www-data /var/www/html
+
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+# RUN php wp-cli.phar --info
 RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /etc/wordpress/wp
+RUN mv wp-cli.phar /usr/local/bin/wp
 
-# RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-#     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-EXPOSE 9000
-
-# ENTRYPOINT ["echo", "salut"]
+# RUN mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+# RUN sed socket 
+CMD [ "sh", "tools/config.sh" ]
