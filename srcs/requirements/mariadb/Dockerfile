@@ -11,6 +11,10 @@ RUN chmod +x /config.sh
 RUN chown -R mysql:mysql /var/lib/mysql
 RUN mariadb-install-db
 
+RUN mkdir -p /var/run/mysqld
+RUN chown -R mysql:mysql /var/run/mysqld
+RUN chmod 777 /var/run/mysqld
+
 EXPOSE 3306
 
-ENTRYPOINT ["/config.sh"]
+ENTRYPOINT ["/bin/bash", "/config.sh"]

@@ -11,10 +11,11 @@ RUN apt-get install -y	wget\
 						mariadb-client
 						
 RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
 COPY . .
 						
-RUN wget https://fr.wordpress.org/wordpress-6.7-fr_FR.tar.gz -P /var/www
-RUN cd /var/www && tar -xzf wordpress-6.7-fr_FR.tar.gz && rm wordpress-6.7-fr_FR.tar.gz
+RUN wget https://fr.wordpress.org/wordpress-6.7-fr_FR.tar.gz -P /var/www/html
+RUN tar -xzf wordpress-6.7-fr_FR.tar.gz && rm wordpress-6.7-fr_FR.tar.gz
 RUN chown -R www-data:www-data /var/www/html
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
