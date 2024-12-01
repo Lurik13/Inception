@@ -45,11 +45,11 @@ services:
       - wordpress:/var/www/wordpress
     networks: 
       - Inception
-    expose:
-      - "9000"
-    healthcheck:
-      test: "nc wordpress:9000 -z"
-      interval: 1s
+    # expose:
+    #   - "9000"
+    # healthcheck:
+    #   test: "nc wordpress:9000 -z"
+    #   interval: 1s
     
 
 volumes:

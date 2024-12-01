@@ -10,12 +10,6 @@ RUN apt-get install -y	wget\
 						php-cli\
 						mariadb-client sudo systemctl
 
-RUN mkdir -p /run/php
-RUN chown www-data:www-data /run/php
-# RUN rm /etc/php/7.4/fpm/pool.d/www.conf
-# RUN systemctl restart php7.4-fpm.service
-# RUN systemctl enable php7.4-fpm.service
-
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY . .
@@ -30,10 +24,8 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN rm /etc/php/7.4/fpm/pool.d/www.conf
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-RUN groupadd nobody
-EXPOSE 9000
 
 # RUN mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
-# RUN sed socket 
+# RUN sed socket
 ENTRYPOINT [ "sh", "tools/config.sh" ]
-CMD [ "/usr/sbin/php-fpm7.4", "-F" ]
+# CMD [ "/usr/sbin/php-fpm7.4", "-F" ]
