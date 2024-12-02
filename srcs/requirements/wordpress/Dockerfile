@@ -10,6 +10,9 @@ RUN apt-get install -y	wget\
 						php-cli\
 						mariadb-client sudo systemctl
 
+RUN mkdir -p /run/php 
+RUN chown www-data:www-data /run/php
+
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 COPY . .
@@ -27,5 +30,6 @@ COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 # RUN mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 # RUN sed socket
+# EXPOSE 9000
 ENTRYPOINT [ "sh", "tools/config.sh" ]
 # CMD [ "/usr/sbin/php-fpm7.4", "-F" ]
