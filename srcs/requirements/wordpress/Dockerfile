@@ -4,10 +4,17 @@ RUN apt-get update -y &&\
 	apt-get upgrade -y &&\
 	apt-get install -y	wget\
 						php7.4\
-						php-fpm\
-						php-mysql\
-						php-cli\
-						mariadb-client
+						php7.4-fpm\
+						php7.4-mysql\
+						php7.4-cli\
+						mariadb-client\
+						php7.4-curl\
+						php7.4-dom\
+						php7.4-imagick\
+						php7.4-mbstring\
+						php7.4-zip\
+						php7.4-gd\
+						php7.4-intl
 
 RUN mkdir -p /run/php
 

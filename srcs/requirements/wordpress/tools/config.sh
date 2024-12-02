@@ -22,7 +22,12 @@ then
                     --admin_email=$WP_ADMIN_EMAIL \
                     --skip-email
     chown -R www-data:www-data .
-    # wp package install curl dom imagick zip gd intl
+    # wp package install curl --allow-root
+    # wp package install dom --allow-root
+    # wp package install imagick --allow-root
+    # wp package install zip --allow-root
+    # wp package install gd --allow-root
+    # wp package install intl --allow-root
 else
     echo "\e[38;2;120;200;0mWordPress is already configured.\e[0m"
 fi

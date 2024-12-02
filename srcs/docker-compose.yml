@@ -4,7 +4,7 @@
 services:
   nginx:
     container_name: nginx
-    hostname: nginx
+    hostname: lribette.42.fr
     build: ./requirements/nginx
     env_file: .env
     restart: unless-stopped
