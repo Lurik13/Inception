@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ ! -f "/var/www/html/wp-config.php" ] 
+if [ ! -f "/var/www/wordpress/wp-config.php" ] 
 then
     # rm /etc/php/7.4/fpm/pool.d/www.conf
     # service php7.4-fpm start
     echo "\e[38;2;0;120;200mConfiguring WordPress...\e[0m"
 
-    wp core download --allow-root --path='/var/www/html' --locale=fr_FR
+    wp core download --allow-root --path='/var/www/wordpress' --locale=fr_FR
 
     wp config create --allow-root \
                                     --dbname=$DB_NAME \
@@ -21,7 +21,8 @@ then
                     --admin_password=$WP_ADMIN_PASSWORD \
                     --admin_email=$WP_ADMIN_EMAIL \
                     --skip-email
-
+    chown -R www-data:www-data .
+    # wp package install curl dom imagick zip gd intl
 else
     echo "\e[38;2;120;200;0mWordPress is already configured.\e[0m"
 fi
