@@ -13,13 +13,9 @@ RUN mkdir -p /var/www/wordpress
 RUN mkdir -p /data/images
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY tools/cv.html /var/www/wordpress/index.html
 
 RUN chmod -R 755 /var/www/wordpress
 RUN chown -R www-data:www-data /var/www/wordpress
-
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 443
 

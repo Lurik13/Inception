@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# set -x
-
 mariadbd-safe &
 sleep 1
 while ! mariadb-check --all-databases

@@ -15,8 +15,6 @@ RUN mkdir -p /var/run/mysqld
 RUN chown -R mysql:mysql /var/run/mysqld
 RUN chmod 777 /var/run/mysqld
 
-RUN ln -sf /dev/stdout /var/log/mysqld.log
-
 EXPOSE 3306
 
 ENTRYPOINT ["/bin/bash", "/config.sh"]
